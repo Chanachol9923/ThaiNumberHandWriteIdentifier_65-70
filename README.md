@@ -20,7 +20,7 @@ A high-performance Thai handwriting recognition system focusing on numbers **๖
 
 1. Clone the repository
 `bash
-git clone [https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifierByUsBingus.git](https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier.git)
+git clone [https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier.git](https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier.git)
 cd ThaiNumberHandWriteIdentifier`
 
 2. Install dependencies
