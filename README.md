@@ -1,43 +1,69 @@
-# ThaiNumberHandWriteIdentifier
+# Thai Number Handwrite Identifier 65-70
 
-A high-performance Thai handwriting recognition system focusing on numbers **๖๕–๗๐**. Built with **Machine Learning (SVM)** and **FastAPI**, featuring a dedicated management suite and a sleek **Bingus-themed** user interface.
+A Thai handwriting recognition system for Thai numerals **๖๕ (65) to ๗๐ (70)**. Built with **SVM (RBF Kernel)** and **FastAPI**, featuring real-time prediction, data collection, model training, and model management via a web UI.
 
-## ✨ Key Features
-* **Thai Handwriting Recognition**: Precise prediction of Thai numerals: ๖๕, ๖๖, ๖๗, ๖๘, ๖๙, and ๗๐.
-* **Real-time Training Console**: Integrated 400px terminal log streaming directly to the browser via Server-Sent Events (SSE).
-* **Admin Hot-swap**: Switch between different trained models (`.pkl`) or upload new ones instantly without a server restart.
-* **Dataset Management**: Draw, categorize, and save handwritten samples directly into the local dataset.
-* **Dataset Export**: One-click ZIP compression to download the entire collected dataset.
-* **Smart Preprocessing**: Automatic image handling including inversion, auto-cropping, and center-of-mass alignment.
+## Features
 
-## 🛠️ Technical Stack
-* **Backend**: Python, FastAPI, Uvicorn
-* **Machine Learning**: Scikit-learn (SVM - RBF Kernel), Joblib, NumPy
-* **Image Processing**: Pillow (PIL), SciPy (ndimage)
-* **Frontend**: HTML5 Canvas, Vanilla JavaScript (Modern UI with CSS Variables)
+- **Handwriting Prediction** — Draw Thai numerals on a canvas and get real-time prediction with confidence score
+- **Data Collector** — Draw and save labeled samples to expand the training dataset
+- **Training Pipeline** — Train an SVM model directly from the browser with live terminal streaming (SSE)
+- **Model Management** — Upload `.pkl` models or switch between trained models without server restart
+- **Smart Preprocessing** — Auto-invert, crop, center-of-mass alignment, and resize to 28x28
+- **Data Augmentation** — Rotation, translation, and noise injection during training
+- **Feature Extraction** — Raw pixels, 4x4 zone features (mean + std), horizontal/vertical projections, diagonal traces
 
-## 🚀 Getting Started
+## Tech Stack
 
-1. Clone the repository
-`bash
-git clone [https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier.git](https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier.git)
-cd ThaiNumberHandWriteIdentifier`
+- **Backend:** Python, FastAPI, Uvicorn
+- **ML:** scikit-learn (SVC, RBF kernel, probability=true), joblib, NumPy
+- **Image Processing:** Pillow, SciPy (ndimage.center_of_mass)
+- **Frontend:** HTML5 Canvas, Vanilla JavaScript, CSS custom properties
 
-2. Install dependencies
-`pip install -r requirements.txt`
+## Getting Started
 
-3. Have fun on your http://127.0.0.1:8000!
-`uvicorn main:app --reload`
+```bash
+git clone https://github.com/Chanachol9923/ThaiNumberHandWriteIdentifier_65-70.git
+cd ThaiNumberHandWriteIdentifier_65-70
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
+Open http://127.0.0.1:8000
 
-📂 Project Structure
-main.py: Core FastAPI server handling API endpoints and real-time streaming.
+## Live Demo
 
-BingusSchoolForTraining.py: Training script including feature extraction logic (Zone features, Projections, Diagonals).
+Deployed on Vercel: [thai-number-hand-write-identifier.vercel.app](https://thai-number-hand-write-identifier-qmnvuddbw.vercel.app)
 
-dataset/: Directory for categorized image samples (labeled 65-70).
+## Project Structure
 
-models/: Directory for stored model files (.pkl).
+| Path | Description |
+|------|-------------|
+| `main.py` | FastAPI server — prediction, dataset save, model upload/switch, training streaming |
+| `BingusSchoolForTraining.py` | SVM training script with augmentation and feature extraction |
+| `dataset/` | Collected handwriting samples organized by label (65–70) |
+| `models/` | Trained `.pkl` model files |
+| `static/` | Frontend assets (index.html, images) |
+| `vercel.json` | Vercel serverless deployment config |
 
-static/: Web UI assets including index.html and project images.
+## API Endpoints
 
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/` | Web UI |
+| POST | `/predict` | Predict a drawn digit (base64 image) |
+| POST | `/save-sample` | Save a drawn sample to dataset |
+| GET | `/get-count/{label}` | Get sample count for a label |
+| GET | `/list-models` | List available models |
+| POST | `/select-model` | Switch active model |
+| POST | `/update-model` | Upload a new `.pkl` model |
+| GET | `/download-model` | Download current model |
+| GET | `/download-dataset` | Download all collected samples as ZIP |
+| GET | `/train-stream` | Start training with SSE output stream |
+
+## Authors
+
+- Chanachol Polketkij (1660705755)
+- Eakkarat Summart (1660707512)
+- Wannapong Pokkrong (1660705888)
+- Yuttanakorn Phoyoo (1660705979)
+- Napat Pinitsub (1660700475)
