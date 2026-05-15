@@ -60,10 +60,4 @@ Deployed on Vercel: [thai-number-hand-write-identifier.vercel.app](https://thai-
 | GET | `/download-dataset` | Download all collected samples as ZIP |
 | GET | `/train-stream` | Start training with SSE output stream |
 
-## Authors
 
-- Chanachol Polketkij (1660705755)
-- Eakkarat Summart (1660707512)
-- Wannapong Pokkrong (1660705888)
-- Yuttanakorn Phoyoo (1660705979)
-- Napat Pinitsub (1660700475)
